@@ -142,7 +142,9 @@ def _expandword(parser, tokenword):
             parts = [node for node in parts if 'substitution' not in node.kind]
 
         node = ast.node(kind='word', word=expandedword,
-                        pos=(tokenword.lexpos, tokenword.endlexpos), parts=parts)
+                        pos=(tokenword.lexpos, tokenword.endlexpos), parts=parts,
+                        singlequoted=quoted and not doublequoted,
+                        doublequoted=doublequoted)
         return node
 
 def p_simple_command_element(p):
